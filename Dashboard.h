@@ -12,6 +12,7 @@ class Dashboard{
     static int controllerIndex;
     static int axisIndex;
     static int buttonIndex;
+    static int POVIndex;
     static float newVal;
     static String message;
     static bool logging;

@@ -13,6 +13,12 @@ bool Controller::getButton(int ID){
   }
   return buttons.get(ID);
 }
+float Controller::getPOV(int ID){
+  while (POVs.getLength() <= ID){
+    POVs.add(0.0f);
+  }
+  return POVs.get(ID);
+}
 
 void Controller::setAxis(int ID, float value){
   while (axes.getLength() <= ID){
@@ -26,4 +32,9 @@ void Controller::setButton(int ID, bool on){
   }
   buttons.get(ID) = on;
 }
-
+void Controller::setPOV(int ID, float value){
+  while (POVs.getLength() <= ID){
+    POVs.add(0.0f);
+  }
+  POVs.get(ID) = value;
+}

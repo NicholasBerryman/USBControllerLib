@@ -7,6 +7,7 @@ char Dashboard::nextChar;
 int Dashboard::controllerIndex;
 int Dashboard::axisIndex;
 int Dashboard::buttonIndex;
+int Dashboard::POVIndex;
 float Dashboard::newVal;
 String Dashboard::message = "";
 bool Dashboard::logging = false;
@@ -59,6 +60,11 @@ void Dashboard::updateData(){
                                 message.indexOf('A')).toInt();
             message = "";
             break;
+          case 'P':
+            POVIndex = message.substring(0,
+                                message.indexOf('P')).toInt();
+            message = "";
+            break;
           case 'V':
             newVal = message.substring(0,
                                 message.indexOf('V')).toFloat();
@@ -79,14 +85,18 @@ void Dashboard::updateData(){
         if (axisIndex > -1){
           controllers.get(controllerIndex).setAxis(axisIndex, newVal);
         }
-        else{
+        else if (buttonIndex > -1){
           controllers.get(controllerIndex).setButton(buttonIndex, newVal);
+        }
+        else{
+          controllers.get(controllerIndex).setPOV(POVIndex, newVal);
         }
         if (logging){
           String logMessage = "";
           logMessage = "Controller: "+String(controllerIndex)+"\n";
           if (axisIndex > -1) logMessage += "Axis: "+String(axisIndex)+"\n";
-          else logMessage += "Button: "+String(buttonIndex)+"\n";
+          else if (buttonIndex > -1) logMessage += "Button: "+String(buttonIndex)+"\n";
+          else logMessage += "POV: "+String(POVIndex)+"\n";
           logMessage += "Value: "+String(newVal);
           
           Dashboard::println("");
@@ -97,6 +107,7 @@ void Dashboard::updateData(){
       isMessage = false;
       axisIndex = -1;
       buttonIndex = -1;
+      POVIndex = -1;
       
       message = "";
      }
