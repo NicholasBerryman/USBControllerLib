@@ -16,9 +16,9 @@ class Vector
      *  \brief Get value at given index
      *  
      *  \param [in] index index of value to get
-     *  \return Value at given index
      *  \pre Index > 0 and index < length
-     *  \post If index < 0 then index = 0. If index > length then index = length
+     *  \post If index < 0 then index = 0. If index > length then index
+     *  \return Value at given index = length
      */
     T& get(int index){
       if (index > filledLength) index = filledLength;
