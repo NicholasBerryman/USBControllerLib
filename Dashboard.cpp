@@ -5,15 +5,16 @@ String Dashboard::dashMessage = "";
 bool Dashboard::isMessage = false;
 char Dashboard::nextChar;
 int Dashboard::controllerIndex;
-int Dashboard::axisIndex;
-int Dashboard::buttonIndex;
-int Dashboard::POVIndex;
+int Dashboard::axisIndex = -1;
+int Dashboard::buttonIndex = -1;
+int Dashboard::POVIndex = -1;
 float Dashboard::newVal;
 String Dashboard::message = "";
 bool Dashboard::logging = false;
+String logMessage = "";
 
 void Dashboard::begin(){
-  Serial.begin(115200);
+  Serial.begin(57600);
 }
 void Dashboard::startLogging(){
   logging = true;
@@ -92,7 +93,6 @@ void Dashboard::updateData(){
           controllers.get(controllerIndex).setPOV(POVIndex, newVal);
         }
         if (logging){
-          String logMessage = "";
           logMessage = "Controller: "+String(controllerIndex)+"\n";
           if (axisIndex > -1) logMessage += "Axis: "+String(axisIndex)+"\n";
           else if (buttonIndex > -1) logMessage += "Button: "+String(buttonIndex)+"\n";
