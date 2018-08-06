@@ -97,8 +97,8 @@ void Dashboard::updateData(){
           if (axisIndex > -1) logMessage += "Axis: "+String(axisIndex)+"\n";
           else if (buttonIndex > -1) logMessage += "Button: "+String(buttonIndex)+"\n";
           else logMessage += "POV: "+String(POVIndex)+"\n";
-          logMessage += "Value: "+String(newVal);
-          
+          logMessage += "Value: "+String(newVal, 3);
+
           Dashboard::println("");
           Dashboard::println(logMessage);
         }
